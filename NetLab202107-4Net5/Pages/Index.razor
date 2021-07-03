@@ -1,7 +1,8 @@
 ﻿@page "/"
 @using Oracle.ManagedDataAccess.Client
 
-<input type="text" @bind="searchtext" @onkeydown="Enter" />
+<h1>DBからSQLで検索</h1>
+<input type="text" @bind="searchtext" />
 <button @onclick="search">検索</button>
 <br />
 <br />
@@ -47,18 +48,11 @@ else
     public string searchtext = "";
     List<Data.Data> list = new List<Data.Data>();
 
-    public void Enter(KeyboardEventArgs e)
-    {
-        if (e.Code == "Enter" || e.Code == "NumpadEnter")
-        {
-            search();
-        }
-    }
 
     public void search()
     {
         list.Clear();
-        string dbstring = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=hostname)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=servicename)));User Id=userid;Password=password";
+        string dbstring = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=host)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=xe)));User Id=userid;Password=password";
         string sql = "select * from yubin where todofuken || CITY || TYO || YUBIN_7 like :kensaku";
         using (OracleConnection con = new OracleConnection(dbstring))
         {
