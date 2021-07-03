@@ -1,4 +1,4 @@
-﻿@page "/Netlab202107-Net5/CsvRead"
+﻿@page "/CsvRead"
 @using Oracle.ManagedDataAccess.Client
 @using Microsoft.VisualBasic.FileIO;
 @using System.Collections.Generic;
@@ -53,7 +53,7 @@ else
 
     public void search()
     {
-        newdata = list.Where(x => $"{ x.Todofuken}{x.Tyo}{x.City}{x.Yubin_7}".Contains(searchtext)).ToList();
+        newdata = list.Where(x => $"{ x.Todofuken}{x.City}{x.Tyo}{x.Yubin_7}".Contains(searchtext)).ToList();
 
     }
 
